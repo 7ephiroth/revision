@@ -1,0 +1,13 @@
+---
+  - name: Installation des outils nécessaires
+    yum: name={{ item }} update_cache=yes state=latest
+    become: yes
+    with_items:
+      - vim
+      - screen
+      - nano
+      - htop
+      - mlocate
+      - wget
+      - net-tools
+...

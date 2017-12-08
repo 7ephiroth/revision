@@ -1,0 +1,24 @@
+---
+- name: creation user
+  become: yes
+  user: name={{ item }} comment="master ansible" shell=/bin/bash
+  with_items:
+    - paul
+    - ajc
+
+- name: utilisation de clef
+  #become: yes
+  authorized_key: user=paul key={{ lookup('file', '/home/paul/.ssh/id_rsa.pub') }}
+  #with_items:
+  #  - paul
+  #  - ajc
+
+
+- name: utilisation de template pour sudoers ansible
+  become: yes
+  template: src=templates/sudoers.j2 dest=/etc/sudoers.d/{{ item }} validate='/usr/sbin/visudo -cf %s'
+  with_items:
+    - paul
+    - ajc
+
+...

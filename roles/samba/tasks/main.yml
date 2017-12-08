@@ -1,0 +1,19 @@
+---
+- name: Install Samba
+  become: yes
+  yum: name=samba state=present update_cache=yes
+
+- name: Démarre le service  Samba
+  become: yes
+  service: name=smb state=started
+
+- name: Creer un dossier publique
+  become: yes
+  file: path=/public state=directory mode=1777
+
+- name: Copie de la configuration de Samba
+  become: yes
+  copy: src=files/smb.conf.ansible dest=/etc/samba/smb.conf backup=yes
+  notify: samba reload
+
+...

@@ -1,0 +1,17 @@
+---
+- name: copie du fichier de depots oracle
+  become: yes
+  copy: src=files/oracle.repo dest=/etc/yum.repos.d/oracle.repo owner=root group=root  mode=0644
+
+- name: copie du fichier de depots dvd
+  become: yes
+  copy: src=files/dvd.repo dest=/etc/yum.repos.d/dvd.repo owner=root group=root  mode=0644
+
+- name: copie de la clef des depots oracle
+  become: yes
+  copy: src=files/RPM-GPG-KEY-oracle-ol7 dest=/etc/yum.repos.d/RPM-GPG-KEY-oracle-ol7 owner=root group=root mode=0644
+
+- name: Update de yum
+  become: yes
+  yum: name=* update_cache=yes
+...

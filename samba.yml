@@ -1,0 +1,22 @@
+---
+- name: Playbook installation sur RedHat
+  hosts: redhat
+  remote_user: ansible
+  become: yes
+  #vars:
+  #  user:
+  #    - paul
+  #    - ajc
+  roles:
+    - depots
+      # when: user is defined
+
+    - tools
+      #when: user is defined
+
+    - user
+      #when: user is defined
+    #- samba
+    #  when: user is defined
+
+...

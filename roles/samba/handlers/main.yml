@@ -1,0 +1,6 @@
+---
+- name: samba reload
+  become: yes
+  service: name=smb state=restart
+
+...
